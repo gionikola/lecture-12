@@ -9,6 +9,7 @@ all:
 	Rscript scripts/02_linear_splines.R
 	Rscript scripts/03_natural_cubic_splines.R
 	Rscript scripts/04_linear_splines_tuned.R
+	Rscript scripts/05_smoothing_spline.R
 
 # Figure scripts only (assumes data/demo.csv already exists)
 fit:
@@ -16,3 +17,4 @@ fit:
 	Rscript scripts/02_linear_splines.R
 	Rscript scripts/03_natural_cubic_splines.R
 	Rscript scripts/04_linear_splines_tuned.R
+	Rscript scripts/05_smoothing_spline.R
