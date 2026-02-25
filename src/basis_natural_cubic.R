@@ -1,4 +1,4 @@
-#' Natural cubic spline basis — Lecture 11
+#' Natural cubic spline basis
 #'
 #' Uses splines::ns() (natural regression splines: linear beyond boundary knots).
 #' Basis matrix has df columns; knots can be specified or implied by df.

@@ -1,4 +1,4 @@
-#' Linear regression spline basis — Lecture 11
+#' Linear regression spline basis
 #'
 #' f(x) = beta0 + beta1*x + sum_k gamma_k * (x - kappa_k)_+
 #' Truncated power basis: 1, x, (x - kappa_1)_+, ..., (x - kappa_K)_+.

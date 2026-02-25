@@ -1,24 +1,17 @@
-# Lecture 11 — Linear regression splines: tune number of knots via 5-fold CV
-# Run from project root: setwd("lecture-12"); source("scripts/04_linear_splines_tuned.R")
-
 source("src/load_packages.R")
 source("src/data.R")
 source("src/plot.R")
 source("src/basis_linear_spline.R")
 
-load_lecture_packages()
+load_packages()
 
-# ---- Data (run 00_data_generate.R first) ----
 demo <- read_demo_data()
 
-# ---- 5-fold cross-validation ----
 set.seed(123)
 splits <- vfold_cv(demo, v = 5)
 
-# Candidate number of interior knots (quantile placement for each K)
 K_candidates <- 1:8
 
-# For each K, compute mean CV RMSE
 cv_metrics <- tibble(K = K_candidates) %>%
   mutate(
     mean_rmse = map_dbl(K, function(k) {
@@ -45,7 +38,6 @@ best_K <- cv_metrics %>%
   slice_min(mean_rmse, n = 1) %>%
   pull(K)
 
-# ---- Refit on full data with chosen K ----
 knots <- knots_quantile(demo$x, best_K)
 X_basis <- basis_linear_spline(demo$x, knots)
 X_df <- as_tibble(X_basis, .name_repair = "minimal")
@@ -57,7 +49,6 @@ model <- linear_reg() %>%
   fit(y ~ . - 1, data = fit_data)
 coefs <- coef(model$fit)
 
-# ---- Predict on a fine grid ----
 x_min <- min(demo$x)
 x_max <- max(demo$x)
 x_grid <- seq(x_min, x_max, length.out = 300)
@@ -69,7 +60,6 @@ pred_tbl <- tibble(
   true = true_f(x_grid)
 )
 
-# ---- Plot and save ----
 dir.create("output/figures", recursive = TRUE, showWarnings = FALSE)
 plot_fit(
   data = demo,

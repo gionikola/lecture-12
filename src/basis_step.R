@@ -1,4 +1,4 @@
-#' Step-function (piecewise-constant) basis — Lecture 11
+#' Step-function (piecewise-constant) basis
 #'
 #' Cutpoints define K bins on [c0, cK). Basis b_k(x) = 1{c_{k-1} <= x < c_k}.
 #' Out-of-range x is clamped to [c0, cK] before evaluation.

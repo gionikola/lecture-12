@@ -1,16 +1,11 @@
-# Lecture 11 — Smoothing spline (penalized least squares); tune df via 5-fold CV
-# Run from project root: setwd("lecture-12"); source("scripts/05_smoothing_spline.R")
-
 source("src/load_packages.R")
 source("src/data.R")
 source("src/plot.R")
 
-load_lecture_packages()
+load_packages()
 
-# ---- Data (run 00_data_generate.R first) ----
 demo <- read_demo_data()
 
-# ---- 5-fold cross-validation: tune effective degrees of freedom ----
 set.seed(123)
 splits <- vfold_cv(demo, v = 5)
 
@@ -34,10 +29,8 @@ best_df <- cv_metrics %>%
   slice_min(mean_rmse, n = 1) %>%
   pull(df)
 
-# ---- Refit on full data with chosen df ----
 fit <- smooth.spline(demo$x, demo$y, df = best_df)
 
-# ---- Predict on a fine grid ----
 x_min <- min(demo$x)
 x_max <- max(demo$x)
 x_grid <- seq(x_min, x_max, length.out = 300)
@@ -49,7 +42,6 @@ pred_tbl <- tibble(
   true = true_f(x_grid)
 )
 
-# ---- Plot and save (no knot lines; smoothing spline uses knots at data points) ----
 dir.create("output/figures", recursive = TRUE, showWarnings = FALSE)
 plot_fit(
   data = demo,

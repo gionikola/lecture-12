@@ -1,4 +1,4 @@
-#' True conditional mean f(x) used in the lecture demo data
+#' True conditional mean f(x) used in the demo data
 #'
 #' @param t Numeric vector of covariate values.
 #' @return Numeric vector of conditional mean values.
@@ -7,7 +7,7 @@ true_f <- function(t) {
   2 + 0.3 * t + 2 * sin(t * 0.6) - 0.05 * (t - 5)^2
 }
 
-#' Generate demo data for basis-function regression (Lecture 11)
+#' Generate demo data for basis-function regression
 #'
 #' Creates a single-regressor dataset Y = f(X) + epsilon with a smooth nonlinear f.
 #' Same data can be used across step functions, linear splines, and natural cubic splines.
@@ -26,7 +26,7 @@ generate_demo_data <- function(n = 200, sigma = 0.5, seed = NULL) {
 
 #' Read the demo dataset from data/demo.csv
 #'
-#' Run \code{scripts/00_data_generate.R} first to create the file.
+#' Run \code{00_data_generate.R} first to create the file.
 #'
 #' @param path Path to the CSV file (default \code{data/demo.csv}).
 #' @return A tibble with columns \code{x} and \code{y}.

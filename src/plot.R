@@ -1,4 +1,4 @@
-#' Plot fitted basis-function regression (Lecture 11)
+#' Plot fitted basis-function regression
 #'
 #' Draws scatter of data, optional true curve, and fitted curve. Optionally marks
 #' cutpoints (step functions) or knots (splines). Saves to PDF.
